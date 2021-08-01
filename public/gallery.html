@@ -1,0 +1,63 @@
+<html>
+<head>
+  <title>Web Gallery 2.0</title>
+  <meta charset="utf-8">
+  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-room-component/dist/aframe-room-component.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/socket.io.js"></script>
+  <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
+</head>
+
+<body>
+  <div id="fly"></div>
+
+  <div id="scene">
+    <a-scene embedded controller id="fey" inspector-plugin-recast
+      networked-scene="serverURL: http://localhost:4000; app: webgallery; connectOnLoad: false; onConnect: onConnect; audio: false; debug: true">
+      <rw-room position="0 0 0" material="color:#866">
+        <rw-wall position="10 0 0"></rw-wall>
+        <rw-wall position="10 0 10"></rw-wall>
+        <rw-wall position="0 0 10"></rw-wall>
+        <rw-wall position="0 0 0"></rw-wall>
+      </rw-room>
+
+      <a-plane rotation="-90 0 0" scale="10 10 10" position="5 0 5" color="#4d4d4d";>
+      </a-plane>
+
+      <a-entity position="0 0 0" id="images"></a-entity>
+
+      <a-assets>
+        <!-- Templates -->
+
+        <!-- Avatar -->
+        <template id="avatar-template">
+          <a-entity class="avatar">
+            <a-sphere class="head" color="#ffffff" scale="0.45 0.5 0.4"></a-sphere>
+            <a-entity class="face" position="0 0.05 0">
+              <a-sphere class="eye" color="#efefef" position="0.16 0.1 -0.35" scale="0.12 0.12 0.12">
+                <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
+              </a-sphere>
+              <a-sphere class="eye" color="#efefef" position="-0.16 0.1 -0.35" scale="0.12 0.12 0.12">
+                <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
+              </a-sphere>
+            </a-entity>
+          </a-entity>
+        </template>
+
+        <!-- /Templates -->
+      </a-assets>
+
+      <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera position="5 1 5"
+        look-controls="pointerLockEnabled: false" wasd-controls="acceleration: 200">
+        <a-sphere class="head" visible="false" random-color></a-sphere>
+      </a-entity>
+
+      <a-entity id="images">
+        <a-entity>
+    </a-scene>
+  </div>
+  <footer>
+  </footer>
+</body>
+
+</html>

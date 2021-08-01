@@ -1,0 +1,16 @@
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    justify-content: space-between;
+}
+
+#error-box {
+    text-align: center;
+    padding-top: 20px;
+}
+
+#register_button, #login_button, #credits_button {
+    margin: 10px;
+}
